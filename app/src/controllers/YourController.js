@@ -1,8 +1,8 @@
-angular.controller('YourController', ['$scope', 'OAuth2', 'YourService', function($scope, OAuth, yourService) {
+angular.controller('YourController', ['$scope', 'OAuth2', 'YourService', function($scope, OAuth2, yourService) {
   "use strict";
 
   var $this = {
-    OAuth: new OAuth(),
+    OAuth: new OAuth2(),
 
     /**
      * Main method
@@ -49,9 +49,12 @@ angular.controller('YourController', ['$scope', 'OAuth2', 'YourService', functio
      * @param  {Object} me [gapi object]
      */
     statusUpdate: function(me) {
+      console.log(me);
       $this.me = me;
       $scope.querySelector('#authorize-button').innerHTML = me ? 'Logout' : 'Login';
       $scope.querySelector('#content').innerHTML = me ? '<p>Hello, ' + me.names[0].displayName + ' !</p>' : '';
+      $scope.querySelector('#photo').style.display = me ? 'block' : 'none';
+      $scope.querySelector('#photo').src = me ? me.photos[0].url : '';
       $this.load();
     },
 

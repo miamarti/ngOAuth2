@@ -72,7 +72,7 @@
       if (value) {
         gapi.client.people.people.get({
           'resourceName': 'people/me',
-          'requestMask.includeField': 'person.names'
+          'requestMask.includeField': 'person.names,person.photos,person.email_addresses'
         }).then(function(resp) {
           $this.log(resp.result.names[0].givenName + ' authenticated successfully');
           /*eslint-disable */
